@@ -5,6 +5,8 @@ module.exports = {
     ],
     theme: {
         screens: {
+            '3xl': {'max': '1650px'},
+
             '2xl': {'max': '1535px'},
             // => @media (max-width: 1535px) { ... }
 
@@ -24,7 +26,24 @@ module.exports = {
             colors: {
                 'bg-primary': '#fcf7f2',
             },
-        }
+            scale: {
+                '-100': '-1',
+            },
+            keyframes: {
+                wiggle: {
+                    "0%, 100%": { transform: "rotate(360deg)" },
+                    "50%": { transform: "rotate(0deg)" },
+                },
+                spinner: {
+                    "0%": { transform: "rotate(360deg)" },
+                    "100%": { transform: "rotate(0deg)" },
+                },
+            },
+            animation: {
+                rotater: "spinner 10s linear infinite",
+                wiggle: "wiggle 10s linear infinite",
+            },
+        },
     },
     plugins: [],
 }
