@@ -24,7 +24,7 @@ module.exports = {
         },
         extend: {
             colors: {
-                'bg-primary': '#fcf7f2',
+                'bg-primary': '#f6e9d8',
             },
             scale: {
                 '-100': '-1',
