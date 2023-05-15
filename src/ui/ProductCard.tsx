@@ -9,7 +9,7 @@ const ProductCard = (props: any) => {
                     <Image src={props.image} alt={props.description} width={200} height={200}
                            className="w-full rounded-xl h-full"/>
                 </div>
-                <h2 className=" ml-7 mr-5 mt-3">{props.title}</h2>
+                <h2 className=" ml-7 mr-5 mt-3 font-bold">{props.title}</h2>
                 <h3 className="mt-1">{props.rating}/5</h3>
                 <h4 className="mt-1">{props.price} $</h4>
             </div>
