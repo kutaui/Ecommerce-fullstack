@@ -1,7 +1,6 @@
 import "../app/globals.css"
-import ImageCard from "@src/ui/ImageCard";
 import Landing from "@src/components/Landing";
-import MainPageProducts from "@src/components/MainPageProducts";
+import MainPageProducts from "@src/components/ProductsList";
 
 const Home = () => {
     return <>

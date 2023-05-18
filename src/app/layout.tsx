@@ -1,21 +1,23 @@
 import Nav from "../components/Nav";
-import Context from "@src/context/Context";
-import {useContext} from "react";
+import {StateContext} from "@src/context/StateContext";
+import {Toaster} from "react-hot-toast";
 
 export const metadata = {
     title: 'TheSociety',
     description: 'Make a statement with your wardrobe.',
 }
-export default function RootLayout({children}: any) {
+export default function RootLayout(props: any) {
 
     return (
         <html lang="en" className="bg-bg-primary">
         <body>
-        <div className="max-w-[82%] mx-auto ">
-            <Nav/>
-            <Context>
-            <main>{children}</main>
-            </Context>
+        <div className="max-w-[82%] mx-auto " id="div">
+            <StateContext>
+                <Toaster/>
+                <Nav/>
+                {props.children}
+                {props.modal}
+            </StateContext>
         </div>
         </body>
         </html>

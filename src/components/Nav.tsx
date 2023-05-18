@@ -2,13 +2,13 @@ import Cart from "../../public/shopping-cart1.png"
 import BsCart from "react-icons/bs"
 import Image from "next/image";
 import Link from "@node_modules/next/dist/client/link";
-
+import "../app/globals.css"
 const Nav = () => {
     // @ts-ignore
     // @ts-ignore
     return (
         <>
-            <nav className="flex w-[100%] font-['Wix_Madefor_Text'] justify-around h-16 mt-8 items-center">
+            <nav className="flex w-[100%]  font-['Wix_Madefor_Text'] justify-around h-16 mt-8 items-center">
                 <Link href="/"><h3 className="text-4xl  font-semibold xl:text-3xl mb-4">TheSociety</h3></Link>
                 <div className="w-[40%]">
                     <ul className="flex tracking-wide justify-around h-16 items-center  text-lg xl:text-base">

@@ -3,7 +3,6 @@ import ImageCard from "@src/ui/ImageCard";
 import CurvedText from "@src/ui/CurvedText";
 import "../app/globals.css"
 import {useContext} from "react";
-import {Products} from "@src/context/Context";
 
 
 const Landing = () => {
