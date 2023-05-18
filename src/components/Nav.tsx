@@ -1,11 +1,13 @@
-import Cart from "../../public/shopping-cart1.png"
-import BsCart from "react-icons/bs"
+"use client"
 import Image from "next/image";
 import Link from "@node_modules/next/dist/client/link";
 import "../app/globals.css"
+import {useStateContext} from "@src/context/StateContext";
+import Cart from "@src/components/Cart";
+
 const Nav = () => {
-    // @ts-ignore
-    // @ts-ignore
+    const {showCart, setShowCart} = useStateContext()
+
     return (
         <>
             <nav className="flex w-[100%]  font-['Wix_Madefor_Text'] justify-around h-16 mt-8 items-center">
@@ -26,12 +28,12 @@ const Nav = () => {
                         <input type="text" placeholder="Search ..."
                                className="rounded-full border border-black h-10 pl-12 pb-1 w-72 placeholder:text-black xl:w-52 2xl:w-56 bg-transparent"/>
                     </div>
-                    <Link href="/cart">
-                        <div className="bg-black rounded-3xl w-11 h-11 flex items-center justify-center">
+                        <div onClick={() => setShowCart(true)}
+                             className="cursor-pointer bg-black rounded-3xl w-11 h-11 flex items-center justify-center">
                             <Image src="/icons/shopping-cart1.png" alt="Cart Icon" width={21} height={25}
                                    className="-ml-1"/>
                         </div>
-                    </Link>
+                    {showCart && <Cart/>}
                     <Link href="/login">
                         <div className="border-black border rounded-3xl w-11 h-11 flex items-center justify-center">
                             <Image src="/icons/user.png" alt="Cart Icon" width={21} height={25}/>

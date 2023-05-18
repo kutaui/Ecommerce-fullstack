@@ -28,7 +28,7 @@ export default function ProductModal() {
                             <p className="text-white w-[85%]">{product.description}</p>
                         </div>
                     </div>
-                    <div className="flex  -mt-10 ml-[26rem]">
+                    <div className="flex -mt-10 ml-[26rem]">
                         <div
                             className="border bg-white rounded-2xl mr-20 flex justify-items-center items-center border-white w-[25%]">
                             <div className="relative mr-5 ml-3  rounded-3xl bg-black w-6 h-6 text-white text-5xl">
