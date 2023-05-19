@@ -31,7 +31,7 @@ const Landing = () => {
                     </div>
                     <div className="ml-20 mt-28 flex">
                         <button
-                            className="mr-10  rounded-xl  w-48 h-14 font-semibold bg-stone-800 text-xl text-[#F5F5F5] hover:bg-gray-700  ">SHOP
+                            className="mr-10  rounded-xl  w-48 h-14 font-semibold bg-stone-800 text-xl text-[#F5F5F5] hover:bg-gray-700">SHOP
                             NOW
                         </button>
                         <p className="leading-5 font-['Schibsted_Grotesk'] w-[42%]">Our collection is designed for the urban dweller who wants to make a statement with their

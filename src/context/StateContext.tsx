@@ -1,8 +1,9 @@
 "use client"
 import React, {createContext, useState, useContext, useEffect} from 'react';
 import {toast} from "react-hot-toast";
-// @ts-ignore
-const Context = createContext()
+
+const Context: React.Context<any> = createContext()
+
 
 export const StateContext = ({children}: any) => {
     const [showCart, setShowCart] = useState(false)
@@ -11,10 +12,30 @@ export const StateContext = ({children}: any) => {
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [qty, setQty] = useState(1)
 
-    let foundProduct
+    let foundProduct: string
 
-    const onAdd = (product, quantity) => {
-        const checkProductInCart = cartItems.find((item) => item.id === product.id)
+
+    // Load cartItems from localStorage
+    useEffect(() => {
+        const cartFromLocalStorage = localStorage.getItem('cartItems');
+        if (cartFromLocalStorage) {
+            const {cartItems, totalPrice, totalQuantities} = JSON.parse(cartFromLocalStorage);
+            setCartItems(cartItems);
+            setTotalPrice(totalPrice);
+            setTotalQuantities(totalQuantities);
+        }
+    }, []);
+
+    // Update localStorage when cartItems, totalPrice, or totalQuantities change
+    useEffect(() => {
+        localStorage.setItem(
+            'cartItems',
+            JSON.stringify({cartItems, totalPrice, totalQuantities})
+        );
+    }, [cartItems, totalPrice, totalQuantities]);
+
+    const onAdd = (product: {id: number; price: number}, quantity: number) => {
+        const checkProductInCart = cartItems.find((item: {id:number}) => item.id === product.id)
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity)
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity)
         setQty(1)

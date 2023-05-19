@@ -20,11 +20,11 @@ export default function Cart() {
                 </button>
 
                 {cartItems.length < 1 && (
-                    <div className="empty-cart">
-                        <Image src="/icons/shopping-bag.png" alt="Empty Cart" width={150} height={100}/>
+                    <div className="empty-cart ">
+                        <Image className="mt-16" src="/icons/shopping-bag.png" alt="Empty Cart" width={150} height={100}/>
                         <h3>Your shopping bag is empty</h3>
 
-                        <button type="button" onClick={() => setShowCart(false)} className="" >
+                        <button type="button" onClick={() => setShowCart(false)} className="mt-20 rounded-xl  w-52 h-14 font-semibold bg-stone-800 text-xl text-[#F5F5F5] hover:bg-gray-700" >
                             Continue Shopping
                         </button>
                     </div>
@@ -50,7 +50,7 @@ export default function Cart() {
                                 <div onClick={() => toggleCartItemQuantity(product.id, "inc")}
                                      className="w-6 h-6 cursor-pointer relative rounded-full border border-black"><span
                                     className="text-3xl absolute  -top-2 left-0.5">+</span></div>
-                                <div onClick={() => onRemove(item)} className="cursor-pointer absolute -right-32">
+                                <div onClick={() => onRemove(product)} className="cursor-pointer absolute -right-32">
                                     <Image className=" " src="/icons/remove.png" alt="Remove Icon" width={20}
                                            height={20}/>
                                 </div>

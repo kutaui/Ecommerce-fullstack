@@ -5,6 +5,13 @@ import {Toaster} from "react-hot-toast";
 export const metadata = {
     title: 'TheSociety',
     description: 'Make a statement with your wardrobe.',
+    icons: {
+        icon: {
+            url: "/favicon.png",
+            type: "image/png",
+        },
+        shortcut: { url: "/icons/favicon.ico", type: "image/png" },
+    },
 }
 export default function RootLayout(props: any) {
 

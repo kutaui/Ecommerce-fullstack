@@ -3,6 +3,10 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import Products from "@src/products"
 
+export const metadata = {
+    title: 'TheSociety | Products',
+}
+
 const ProductsPage = () => {
 const products = Products
     return <>
