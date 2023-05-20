@@ -1,10 +1,9 @@
 "use client"
 import Products from "@src/products"
-import Modal from "../../../../ui/Modal/Modal"
 import {useParams, useRouter} from "next/navigation";
 import Image from "next/image";
 import {useStateContext} from "@src/context/StateContext";
-
+import Modal from "@src/ui/Modal"
 
 export default function ProductModal() {
     const router = useRouter()
