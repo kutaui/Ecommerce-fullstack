@@ -7,6 +7,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Login from "@src/components/Login"
+import {useSession} from "@node_modules/next-auth/react";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -16,6 +17,8 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
+    const {data:Session} = useSession()
+
     const {children, value, index, ...other} = props;
 
     return (
@@ -70,12 +73,12 @@ export default function FullWidthTabs() {
                 </Tabs>
             </AppBar>
 
-                <TabPanel value={value} index={0} dir={theme.direction}>
-                    <Login button="Login"/>
-                </TabPanel>
-                <TabPanel value={value} index={1} dir={theme.direction}>
-                    <Login button="Register"/>
-                </TabPanel>
+            <TabPanel value={value} index={0} dir={theme.direction}>
+                <Login button="Login"/>
+            </TabPanel>
+            <TabPanel value={value} index={1} dir={theme.direction}>
+                <Login button="Register"/>
+            </TabPanel>
         </Box>
     );
 }
