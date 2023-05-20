@@ -1,6 +1,5 @@
 "use client"
 import * as React from 'react';
-import SwipeableViews from 'react-swipeable-views';
 import {useTheme} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
@@ -8,7 +7,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Login from "@src/components/Login"
-import Register from "@src/components/Register"
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -71,21 +69,13 @@ export default function FullWidthTabs() {
                     <Tab label="Item Two" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
-            <SwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={value}
-                onChangeIndex={handleChangeIndex}
-            >
+
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <Login/>
+                    <Login button="Login"/>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    Item Two
+                    <Login button="Register"/>
                 </TabPanel>
-                <TabPanel value={value} index={2} dir={theme.direction}>
-                    Item Three
-                </TabPanel>
-            </SwipeableViews>
         </Box>
     );
 }

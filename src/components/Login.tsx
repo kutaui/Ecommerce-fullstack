@@ -2,7 +2,7 @@
 import TextField from '@mui/material/TextField';
 import Button, {ButtonProps} from "@mui/material/Button";
 
-export default function Login() {
+export default function Login(props:any) {
     return <>
         <div className="m-auto rounded-xl mt-10 bg-white max-w-[30%] min-w-[300px] h-96">
             <div className="pt-10 w-full h-full">
@@ -14,7 +14,7 @@ export default function Login() {
                             backgroundColor: '#33393c',
                             "&:hover": {backgroundColor: '#000000'}
                         }
-                    }} variant="contained">Login</Button>
+                    }} variant="contained">{props.button}</Button>
                 </form>
             </div>
         </div>
