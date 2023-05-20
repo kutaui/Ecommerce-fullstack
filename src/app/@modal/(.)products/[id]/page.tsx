@@ -1,6 +1,6 @@
 "use client"
 import Products from "@src/products"
-import Modal from "@src/ui/Modal";
+import Modal from "../../../../ui/Modal"
 import {useParams, useRouter} from "next/navigation";
 import Image from "next/image";
 import {useStateContext} from "@src/context/StateContext";
