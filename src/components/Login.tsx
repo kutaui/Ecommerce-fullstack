@@ -9,7 +9,7 @@ export default function Login(props:any) {
                 <form className="w-full h-60 flex flex-col" action="">
                     <TextField sx={{margin: "auto", width: "80%"}} label="E-mail" variant="outlined"/>
                     <TextField sx={{margin: "auto", width: "80%"}} label="Password" type="password" variant="outlined"/>
-                    <Button sx={{
+                    <Button onClick={props.onClick} sx={{
                         margin: "auto", color: "white", width: "35%", "&.MuiButton-contained": {
                             backgroundColor: '#33393c',
                             "&:hover": {backgroundColor: '#000000'}

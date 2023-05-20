@@ -1,8 +1,8 @@
 "use client";
-import { useCallback, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import {useCallback, useRef, useEffect} from "react";
+import {useRouter} from "next/navigation";
 
-export default function Modal({ children }) {
+export default function Modal({children}) {
     const overlay = useRef();
     const wrapper = useRef();
     const router = useRouter();
