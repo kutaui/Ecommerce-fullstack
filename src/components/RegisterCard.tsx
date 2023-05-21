@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { signIn, useSession } from 'next-auth/react'
 
 export default function RegisterCard() {
 	const handleSubmit = async (event) => {
@@ -12,9 +11,10 @@ export default function RegisterCard() {
 			email: event.target.email.value,
 			password: event.target.password.value,
 		}
-
+		console.log(data)
 		// Send the data to the server in JSON format.
 		const JSONdata = JSON.stringify(data)
+		console.log(JSONdata)
 
 		// API endpoint where we send form data.
 		const endpoint = '/api/user'
@@ -37,7 +37,6 @@ export default function RegisterCard() {
 		// Get the response data from server as JSON.
 		// If server returns the name submitted, that means the form works.
 		const result = await response.json()
-		alert(`Is this your full name: ${result.data}`)
 	}
 
 	return (
