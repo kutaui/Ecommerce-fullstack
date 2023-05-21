@@ -1,14 +1,14 @@
-import "../app/globals.css"
-import Landing from "@src/components/Landing";
-import MainPageProducts from "@src/components/ProductsList";
+import '../app/globals.css'
+import Landing from '../components/Landing'
+import MainPageProducts from '../components/ProductsList'
 
 const Home = () => {
-    return <>
-        <Landing/>
-        <MainPageProducts/>
-    </>
-
-        ;
+	return (
+		<>
+			<Landing />
+			<MainPageProducts />
+		</>
+	)
 }
 
 export default Home

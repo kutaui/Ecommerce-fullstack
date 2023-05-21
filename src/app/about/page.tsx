@@ -1,12 +1,10 @@
-import StarRating from "@src/ui/StarRating";
-import "../globals.css"
+import '../globals.css'
 const About = () => {
-    return <>
-        <div>about</div>
-
-    </>
-
-
+	return (
+		<>
+			<div>about</div>
+		</>
+	)
 }
 
 export default About
