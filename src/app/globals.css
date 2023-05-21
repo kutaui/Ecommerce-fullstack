@@ -1,27 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.cart-wrapper {
+    @apply w-screen fixed z-[100] transition-all duration-[1s] ease-[ease-in-out] right-0 top-0;
+    background: rgba(0, 0, 0, 0.5);
+}
+.cart-container {
+    @apply h-screen w-[600px] bg-[white] float-right relative px-2.5 py-10;
+}
+.cart-heading {
+    @apply flex items-center text-lg font-medium cursor-pointer gap-0.5 bg-transparent ml-2.5 border-[none];
+}
+.cart-heading .heading {
+    @apply ml-2.5;
+}
+.cart-num-items {
+    @apply text-[#f02d34] ml-2.5;
+}
+.empty-cart {
+    @apply text-center m-10 flex flex-col items-center;
+}
+.empty-cart h3 {
+    @apply font-semibold text-xl mt-5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
