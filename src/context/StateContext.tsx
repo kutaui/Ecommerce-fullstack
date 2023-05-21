@@ -11,7 +11,7 @@ export const StateContext = ({ children }: any) => {
 	const [totalQuantities, setTotalQuantities] = useState(0)
 	const [qty, setQty] = useState(1)
 
-	let foundProduct: string
+	let foundProduct: { price: number; quantity: number }
 
 	// Load cartItems from localStorage
 	useEffect(() => {
@@ -33,9 +33,9 @@ export const StateContext = ({ children }: any) => {
 		)
 	}, [cartItems, totalPrice, totalQuantities])
 
-	const onAdd = (product: { id: number; price: number }, quantity: number) => {
+	const onAdd = (product: any, quantity: any) => {
 		const checkProductInCart = cartItems.find(
-			(item: { id: number }) => item.id === product.id
+			(item: any) => item.id === product.id
 		)
 		setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity)
 		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity)
