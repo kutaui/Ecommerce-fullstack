@@ -4,20 +4,21 @@ import Link from 'next/link'
 import '../app/globals.css'
 import { useStateContext } from '../context/StateContext'
 import Cart from '../components/Cart'
+import { signIn } from 'next-auth/react'
 
 const Nav = () => {
 	const { showCart, setShowCart } = useStateContext()
 
 	return (
 		<>
-			<nav className="flex w-[100%]  font-['Wix_Madefor_Text'] justify-around h-16 mt-8 items-center">
+			<nav className="mt-8 flex  h-16 w-[100%] items-center justify-around font-['Wix_Madefor_Text']">
 				<Link href="/">
-					<h3 className="text-4xl  font-semibold xl:text-3xl mb-4">
+					<h3 className="mb-4  text-4xl font-semibold xl:text-3xl">
 						TheSociety
 					</h3>
 				</Link>
 				<div className="w-[40%]">
-					<ul className="flex tracking-wide justify-around h-16 items-center  text-lg xl:text-base">
+					<ul className="flex h-16 items-center justify-around text-lg  tracking-wide xl:text-base">
 						<li>
 							<Link className="hover:font-bold" href="/about">
 								{' '}
@@ -42,7 +43,7 @@ const Nav = () => {
 					</ul>
 				</div>
 
-				<div className="flex justify-around w-[30%] 2xl:w-[35%] mt-2">
+				<div className="mt-2 flex w-[30%] justify-around 2xl:w-[35%]">
 					<div className="relative">
 						<Image
 							className="absolute ml-4 mt-2.5"
@@ -54,12 +55,12 @@ const Nav = () => {
 						<input
 							type="text"
 							placeholder="Search ..."
-							className="rounded-full border border-black h-10 pl-12 pb-1 w-72 placeholder:text-black xl:w-52 2xl:w-56 bg-transparent"
+							className="h-10 w-72 rounded-full border border-black bg-transparent pb-1 pl-12 placeholder:text-black 2xl:w-56 xl:w-52"
 						/>
 					</div>
 					<div
 						onClick={() => setShowCart(true)}
-						className="cursor-pointer bg-black rounded-3xl w-11 h-11 flex items-center justify-center"
+						className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-3xl bg-black"
 					>
 						<Image
 							src="/icons/shopping-cart1.png"
@@ -70,8 +71,8 @@ const Nav = () => {
 						/>
 					</div>
 					{showCart && <Cart />}
-					<Link href="/login">
-						<div className="border-black border rounded-3xl w-11 h-11 flex items-center justify-center">
+					<button onClick={() => signIn()}>
+						<div className="flex h-11 w-11 items-center justify-center rounded-3xl border border-black">
 							<Image
 								src="/icons/user.png"
 								alt="Cart Icon"
@@ -79,10 +80,10 @@ const Nav = () => {
 								height={25}
 							/>
 						</div>
-					</Link>
+					</button>
 				</div>
 			</nav>
-			<hr className="border-black mt-4" />
+			<hr className="mt-4 border-black" />
 		</>
 	)
 }

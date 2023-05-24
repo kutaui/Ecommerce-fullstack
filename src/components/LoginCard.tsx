@@ -1,48 +1,49 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+
+import Alert from '../ui/Alert'
 
 export default function LoginCard() {
 	const { data: session } = useSession()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [loginSuccess, setLoginSuccess] = useState(null)
+	const router = useRouter()
 
-	const email = useRef('')
-	const password = useRef('')
-
-	const onSubmit = async (e) => {
+	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
-		const result = await signIn('credentials', {
-			email: email.current,
-			password: password.current,
-			redirect: true,
+		signIn('credentials', {
+			email,
+			password,
 			callbackUrl: '/profile',
 		})
-		console.log(result)
 	}
 
 	return (
 		<>
-			<div className="m-auto rounded-xl mt-10 bg-white max-w-[30%] min-w-[300px] h-96">
+			<div className="m-auto mt-10 h-96 min-w-[300px] max-w-[30%] rounded-xl bg-white">
 				{session && session.user.email}
 				<div className="ml-10  pt-10">
-					<form className="flex flex-col" action="">
+					<form className="flex flex-col" onSubmit={onSubmit}>
 						<input
-							className="w-52 h-10 border border-black"
-							type="text"
-							name=""
-							id=""
-							onChange={(e) => (email.current = e.target.value)}
+							className="h-10 w-52 border border-black"
+							type="email"
+							id="email"
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
 						/>
 						<input
-							className="w-52 h-10 border border-black mt-10"
+							className="mt-10 h-10 w-52 border border-black"
 							type="password"
-							name=""
-							id=""
-							onChange={(e) => (password.current = e.target.value)}
+							id="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
-						<button
-							className="mr-10  rounded-xl  w-48 h-14 font-semibold bg-stone-800 text-xl text-[#F5F5F5] hover:bg-gray-700"
-							onClick={onSubmit}
-						>
+						{loginSuccess === true && <Alert>Login successful!</Alert>}
+						{loginSuccess === false && <Alert>Invalid credentials</Alert>}
+						<button className="mr-10  h-14  w-48 rounded-xl bg-stone-800 text-xl font-semibold text-[#F5F5F5] hover:bg-gray-700">
 							Login
 						</button>
 					</form>

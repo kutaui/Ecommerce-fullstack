@@ -3,7 +3,6 @@ import * as React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
-import LoginCard from '../../../components/LoginCard'
 import RegisterCard from '../../../components/RegisterCard'
 import Link from 'next/link'
 
@@ -36,8 +35,8 @@ function a11yProps(index: number) {
 	}
 }
 
-export default function Login() {
-	const [value, setValue] = React.useState(0)
+export default function Register() {
+	const [value, setValue] = React.useState(1)
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue)
@@ -54,16 +53,16 @@ export default function Login() {
 					aria-label="Login and Register Tabs"
 					centered
 				>
-					<Tab label="Login" {...a11yProps(0)} />
-					<Link href="/register">
-						<Tab label="Register" {...a11yProps(1)} />
+					<Link href="/login">
+						<Tab label="Login" {...a11yProps(0)} />
 					</Link>
+					<Tab label="Register" {...a11yProps(1)} />
 				</Tabs>
 			</Box>
-			<TabPanel value={value} index={0}>
-				<LoginCard />
+			<TabPanel value={value} index={0} />
+			<TabPanel value={value} index={1}>
+				<RegisterCard />
 			</TabPanel>
-			<TabPanel value={value} index={1}></TabPanel>
 		</Box>
 	)
 }
