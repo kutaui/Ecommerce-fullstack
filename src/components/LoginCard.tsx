@@ -1,30 +1,38 @@
 'use client'
 import React, { useRef, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import Alert from '../ui/Alert'
 
 export default function LoginCard() {
-	const { data: session } = useSession()
+	const router = useRouter()
+	const searchParams = useSearchParams()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [loginSuccess, setLoginSuccess] = useState(null)
-	const router = useRouter()
+	const [error, setError] = useState('')
 
-	const onSubmit = (e: React.FormEvent) => {
+	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		signIn('credentials', {
-			email,
-			password,
-			callbackUrl: '/profile',
-		})
+		try {
+			const res = await signIn('credentials', {
+				redirect: false,
+				email,
+				password,
+				callbackUrl: '/profile',
+			})
+			console.log('Res', res)
+			if (!res?.error) {
+				router.push('/profile')
+			} else {
+				setError('Invalid email or password')
+			}
+		} catch (err: any) {}
 	}
 
 	return (
 		<>
 			<div className="m-auto mt-10 h-96 min-w-[300px] max-w-[30%] rounded-xl bg-white">
-				{session && session.user.email}
 				<div className="ml-10  pt-10">
 					<form className="flex flex-col" onSubmit={onSubmit}>
 						<input
@@ -41,8 +49,7 @@ export default function LoginCard() {
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
-						{loginSuccess === true && <Alert>Login successful!</Alert>}
-						{loginSuccess === false && <Alert>Invalid credentials</Alert>}
+						{error && <Alert>{error}</Alert>}
 						<button className="mr-10  h-14  w-48 rounded-xl bg-stone-800 text-xl font-semibold text-[#F5F5F5] hover:bg-gray-700">
 							Login
 						</button>

@@ -1,42 +1,81 @@
-import NextAuth from 'next-auth'
+import { prisma } from '../../../../../lib/prisma'
+import { compare } from 'bcrypt'
+import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
+	pages: {
+		signIn: '/login',
+	},
+	session: {
+		strategy: 'jwt',
+	},
 	providers: [
 		CredentialsProvider({
-			// The name to display on the sign in form (e.g. "Sign in with...")
-			name: 'Credentials',
-
+			name: 'Sign in',
 			credentials: {
-				email: { label: 'Email', type: 'email', placeholder: 'jsmith' },
+				email: {
+					label: 'Email',
+					type: 'email',
+					placeholder: 'hello@example.com',
+				},
 				password: { label: 'Password', type: 'password' },
 			},
-			async authorize(credentials, req) {
-				// Add logic here to look up the user from the credentials supplied
-				const res = await fetch(process.env.LOGIN_URL, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						email: credentials?.email,
-						password: credentials?.password,
-					}),
-				})
-				const user = await res.json()
-				if (user) {
-					// Any object returned will be saved in `user` property of the JWT
-					return user
-				} else {
-					// If you return null then an error will be displayed advising the user to check their details.
+			async authorize(credentials) {
+				if (!credentials?.email || !credentials.password) {
 					return null
+				}
 
-					// You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+				const user = await prisma.user.findUnique({
+					where: {
+						email: credentials.email,
+					},
+				})
+
+				if (!user) {
+					return null
+				}
+
+				const isPasswordValid = await compare(
+					credentials.password,
+					user.password
+				)
+
+				if (!isPasswordValid) {
+					return null
+				}
+
+				return {
+					id: user.id + '',
+					email: user.email,
 				}
 			},
 		}),
 	],
-	pages: {
-		signIn: '/login',
+	callbacks: {
+		session: ({ session, token }) => {
+			console.log('Session Callback', { session, token })
+			return {
+				...session,
+				user: {
+					...session.user,
+					id: token.id,
+				},
+			}
+		},
+		jwt: ({ token, user }) => {
+			console.log('JWT Callback', { token, user })
+			if (user) {
+				const u = user as unknown as any
+				return {
+					...token,
+					id: u.id,
+				}
+			}
+			return token
+		},
 	},
-})
+}
 
+const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }

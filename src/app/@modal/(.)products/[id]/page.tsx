@@ -15,8 +15,8 @@ export default function ProductModal() {
 		<Modal>
 			{product && (
 				<div className="-ml-72 h-[550px] w-[50%] rounded border border-black bg-[#4d4843] ">
-					<div className=" flex ">
-						<div className="ml-10 mt-[6.8rem] h-[20rem] w-[80%] ">
+					<div className="flex ">
+						<div className="ml-10 mt-[5.8rem] h-[20rem] w-[60%] ">
 							<Image
 								src={product.image}
 								alt={product.description}
@@ -25,9 +25,13 @@ export default function ProductModal() {
 								className="h-full w-full rounded  object-contain "
 							/>
 						</div>
-						<div className="ml-10 mt-[6.8rem]">
-							<h2 className="mb-10 text-3xl text-white">{product.title}</h2>
-							<p className="w-[85%] text-white">{product.description}</p>
+						<div className="ml-10 mt-[5.8rem] h-[50px] w-[90%] ">
+							<h2 className="mb-10 w-[80%] text-3xl text-white">
+								{product.title}
+							</h2>
+							<p className="h-[120px] w-[80%] overflow-hidden text-clip  text-white">
+								{product.description}
+							</p>
 						</div>
 					</div>
 					<div className="-mt-10 ml-[26rem] flex">
@@ -61,4 +65,5 @@ export default function ProductModal() {
 			)}
 		</Modal>
 	)
+	
 }
