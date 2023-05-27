@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import LoginCard from '../../../components/LoginCard'
 import RegisterCard from '../../../components/RegisterCard'
+import Link from 'next/link'
 
 interface TabPanelProps {
 	children?: React.ReactNode
@@ -35,7 +36,7 @@ function a11yProps(index: number) {
 	}
 }
 
-export default function BasicTabs() {
+export default function Login() {
 	const [value, setValue] = React.useState(0)
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -54,15 +55,15 @@ export default function BasicTabs() {
 					centered
 				>
 					<Tab label="Login" {...a11yProps(0)} />
-					<Tab label="Register" {...a11yProps(1)} />
+					<Link href="/register">
+						<Tab label="Register" {...a11yProps(1)} />
+					</Link>
 				</Tabs>
 			</Box>
 			<TabPanel value={value} index={0}>
 				<LoginCard />
 			</TabPanel>
-			<TabPanel value={value} index={1}>
-				<RegisterCard />
-			</TabPanel>
+			<TabPanel value={value} index={1}></TabPanel>
 		</Box>
 	)
 }
