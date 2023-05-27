@@ -9,6 +9,7 @@ interface RequestBody {
 }
 
 export async function POST(req: Request, res: NextApiResponse) {
+
 	try {
 		const body: RequestBody = await req.json()
 		const user = await prisma.user.create({
@@ -18,7 +19,9 @@ export async function POST(req: Request, res: NextApiResponse) {
 			},
 		})
 
+
 		const { password, ...userWithoutPass } = user
+
 		return new Response(JSON.stringify(userWithoutPass))
 	} catch (e) {
 		if (e instanceof Prisma.PrismaClientKnownRequestError) {
@@ -33,3 +36,4 @@ export async function POST(req: Request, res: NextApiResponse) {
 		throw e
 	}
 }
+
