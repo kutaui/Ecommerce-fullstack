@@ -11,4 +11,13 @@ declare module "next-auth" {
             profile: Profile
         };
     }
+
+
+    interface Profile {
+        id: number;
+        name: string;
+        bio: string;
+        user: User,
+        userId: number
+    }
 }

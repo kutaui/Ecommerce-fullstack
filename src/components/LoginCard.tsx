@@ -3,6 +3,7 @@ import React, {useRef, useState} from 'react'
 import {signIn, useSession} from 'next-auth/react'
 import {useRouter, useSearchParams} from 'next/navigation'
 import Alert from '../ui/Alert'
+import {toast} from "react-hot-toast";
 
 export default function LoginCard() {
     const router = useRouter()
@@ -21,6 +22,7 @@ export default function LoginCard() {
                 callbackUrl: '/profile',
             })
             if (!res?.error) {
+                toast.success('Logged in successfully')
                 router.push('/profile')
             } else {
                 setError('Invalid email or password')
