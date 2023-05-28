@@ -1,11 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Alert from '../ui/Alert'
-
+import toast from 'react-hot-toast'
 export default function RegisterCard() {
 	const router = useRouter()
-	const [registerSuccess, setRegisterSuccess] = useState(null)
 	let errorMessage
 	const handleSubmit = async (event) => {
 		event.preventDefault()
@@ -22,7 +20,7 @@ export default function RegisterCard() {
 				},
 			})
 			if (res.ok) {
-				setRegisterSuccess(true)
+				toast.success('Account created successfully')
 				event.target.email.value = ''
 				event.target.password.value = ''
 				const timer = setTimeout(() => {
@@ -30,7 +28,7 @@ export default function RegisterCard() {
 				}, 1750)
 				return () => clearTimeout(timer)
 			} else if (!res.ok) {
-				setRegisterSuccess(false)
+				toast.error('Email is already in use.')
 			}
 		} catch (err) {
 			console.error(err)
@@ -42,26 +40,23 @@ export default function RegisterCard() {
 			<div className="m-auto mt-10 h-96 min-w-[18.75rem] max-w-[30%] rounded-xl bg-white">
 				<div className="ml-10  pt-10">
 					<form className="flex flex-col" onSubmit={handleSubmit}>
+						<label htmlFor="email">Email</label>
 						<input
 							className="h-10 w-52 border border-black"
 							type="text"
 							name="email"
 							id="email"
 						/>
+						<label className="mt-10" htmlFor="password">Password</label>
 						<input
-							className="mt-10 h-10 w-52 border border-black"
+							className=" h-10 w-52 border border-black"
 							type="password"
 							name="password"
 							id="password"
 						/>
-						{registerSuccess === true && (
-							<Alert>Successfully registered!</Alert>
-						)}
-						{registerSuccess === false && (
-							<Alert>E-mail is already in use</Alert>
-						)}
+
 						<button
-							className="mr-10  h-14  w-48 rounded-xl bg-stone-800 text-xl font-semibold text-[#F5F5F5] hover:bg-gray-700"
+							className="mt-10 mr-10  h-14  w-48 rounded-xl bg-stone-800 text-xl font-semibold text-[#F5F5F5] hover:bg-gray-700"
 							type="submit"
 						>
 							Register

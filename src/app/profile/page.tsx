@@ -38,7 +38,7 @@ export default function Profile() {
             if (!profile) {
                 router.push('/profile/edit');
             }
-        }, 2000);
+        }, 500);
 
         return () => {
             clearTimeout(redirectTimeout);
