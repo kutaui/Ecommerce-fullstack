@@ -59,19 +59,20 @@ export default function Profile() {
 
 
     if (isLoading) {
-        // Render loading state while fetching profile data
         return
     }
 
     return (
         <>
             <div className="mt-10 m-auto w-full">
-                <div className="m-auto w-[50%]">
+                <div className="ml-[30rem] w-[50%]">
 
-                    <h1 className="ml-28 text-4xl">Welcome <span> {profile && profile.name}</span></h1>
+                    <h1 className="ml-28 text-4xl mb-10">Your Profile</h1>
                     <div className="w-[100%] h-52">
-                        <h2 className=" mt-10 text-3xl mx-auto w-[50%]">Biography</h2>
-                        <p className="w-[60%] h-12 break-words">{profile && profile.bio}</p>
+                        <h2 className="text-3xl mb-5 w-[50%]">Name</h2>
+                        <h2 className="border p-1 bg-white border-black w-[50%] text-xl">{profile && profile.name}</h2>
+                        <h2 className=" mt-10 text-3xl mb-5 w-[50%]">Biography</h2>
+                        <p className="w-[50%] p-1 border bg-white  border-black  break-words">{profile && profile.bio}</p>
                     </div>
 
                 </div>

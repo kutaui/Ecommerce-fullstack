@@ -6,13 +6,16 @@
 <h3>A fullstack E-commerce App</h3>
 </div>
 
+![Landing Page](./public/images/landing_page.jpg)
+
 # Introduction
-This project originally started as my big project that I wanted to go all in. But while developing this I had an idea of a "real" project which is not some dummy copy, so I figured I might learn Next.js with this project, and yes this is my first time with Next.js. This project still has a lot of stuff that I wanted to add, especially QOL *(Quality of life)* stuff.
+This is my first time using Next.js. After feeling confident in React, I wanted to make a Fullstack project with Next.js. I know the code isn't the best, but _**it works**_. I wanted to make a project that is focused on UX as a whole and little **QOL _(Quality of life)_** stuff. I would appreciate and encourage anyone to find a bug/issue and submit it through issues tab.
+
 
 ## Tech Stack
 
 - Next.js
-- Prisma
+- Prisma _(First and last time using prisma. **Drizzle FTW**)_
 - PostgreSQL
 - Tailwind
 - Typescript
@@ -39,7 +42,7 @@ Just a simple QOL feature.
 
 I used react-hot-toast for notifications and feedback for better UX.
 
-- <b>Users can create their own custom profile</b><br>
+- <b>Users can create and edit their own custom profile</b><br>
 
 When logged in, users are redirected to their profile page. If they don't have a profile page then they are redirected
 to the profile edit route where they can create their profile.
@@ -50,7 +53,10 @@ After logging in users are not allowed to see login or register page. And to rea
  
 
 ## Design
-I came across this landing page design on dribbble. Unfortunately I lost the link to the design. The reason for the inconsistency between the design of the landing page and other pages because the design only consisted of landing page so I had to improvise, but I also didn't want to spend so much time on design and put that time into functionality.
+I came across this landing page design on dribbble. Unfortunately I lost the link to the design. The reason for the inconsistency between the design of the landing page and other pages because the design only consisted of landing page, so I had to improvise, but I also didn't want to spend so much time on design and I put that time into functionality.
+
+
+## Challenges
 
 
 ## Roadmap

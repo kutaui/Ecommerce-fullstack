@@ -28,24 +28,43 @@ export async function POST(req: Request, res: NextApiResponse) {
             throw new Error('User not found')
         }
 
-        const profile = await prisma.profile.create({
-            data: {
-                name: body.name,
-                bio: body.bio,
-                user: {
-                    connect: {
-                        id: user.id
-                    }
-                }
+        let profile = await prisma.profile.findUnique({
+            where: {
+                userId: user.id
             }
         })
+
+        if (profile) {
+            // Update existing profile using PATCH request
+            profile = await prisma.profile.update({
+                where: {
+                    id: profile.id
+                },
+                data: {
+                    name: body.name,
+                    bio: body.bio
+                }
+            })
+        } else {
+            // Create a new profile using POST request
+            profile = await prisma.profile.create({
+                data: {
+                    name: body.name,
+                    bio: body.bio,
+                    user: {
+                        connect: {
+                            id: user.id
+                        }
+                    }
+                }
+            })
+        }
 
         return new Response(JSON.stringify(profile))
     } catch (e) {
         throw e
     }
 }
-
 export async function GET(req: Request, res: NextApiResponse) {
     const session = await getServerSession(authOptions)
     if (!session) {
