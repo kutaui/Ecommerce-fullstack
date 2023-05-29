@@ -50,14 +50,21 @@ to the profile edit route where they can create their profile.
 - <b>Sessions and Middleware</b><br>
 
 After logging in users are not allowed to see login or register page. And to reach profile routes they need to be logged in.
- 
+
+- <b>Search with suggestions</b><br>
+
+Instant feedback when typing into searchbar.
+
+
 
 ## Design
 I came across this landing page design on dribbble. Unfortunately I lost the link to the design. The reason for the inconsistency between the design of the landing page and other pages because the design only consisted of landing page, so I had to improvise, but I also didn't want to spend so much time on design and I put that time into functionality.
 
 
 ## Challenges
-
+The most-time consuming thing to implement was Credentials Authentication and customizing it. I am certain implementing OAUTH would have been much easier. 
+After that I spend a lot of time searching for example code or tutorials for how to implement instagram like routing. Fortunately Vercel had a repo just for that, I just customized it to my liking.
 
 ## Roadmap
 - [ ] The website is made for around 1600px and 1900px. Some of the components are responsive till 1200px. Will add full responsiveness and mobile design.
+- [ ] Make the design more visually appealing.
