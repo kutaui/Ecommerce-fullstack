@@ -25,7 +25,7 @@ export default function RegisterCard() {
 				event.target.password.value = ''
 				const timer = setTimeout(() => {
 					router.push('/login')
-				}, 1750)
+				}, 1000)
 				return () => clearTimeout(timer)
 			} else if (!res.ok) {
 				toast.error('Email is already in use.')

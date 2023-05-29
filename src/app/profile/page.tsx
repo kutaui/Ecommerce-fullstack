@@ -1,16 +1,22 @@
 "use client"
 import '../globals.css'
-import {useSession} from "next-auth/react";
+import {signOut, useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
-
+interface Profile {
+    name: string
+    bio: string
+}
 export default function Profile() {
     const router = useRouter()
     const {data: session} = useSession();
-    const [profile, setProfile] = useState();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const [profile, setProfile] = useState<Profile | null>(null)
+
+    const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,8 +28,10 @@ export default function Profile() {
                 });
                 if (res.ok) {
                     setProfile(await res.json());
+                    setIsLoading(false)
+
                 } else if (!res.ok) {
-                    toast.error('Something went wrong');
+
                 }
             } catch (err) {
                 console.error(err);
@@ -33,25 +41,52 @@ export default function Profile() {
         fetchData();
     }, []);
 
+
     useEffect(() => {
         const redirectTimeout = setTimeout(() => {
             if (!profile) {
+                toast('Please create your profile', {
+                    icon: '⚠️',
+                });
                 router.push('/profile/edit');
             }
-        }, 500);
+        }, 1000);
 
         return () => {
             clearTimeout(redirectTimeout);
         };
     }, [profile, router]);
-    console.log(session)
-    console.log(profile)
+
+
+    if (isLoading) {
+        // Render loading state while fetching profile data
+        return
+    }
+
     return (
         <>
-            <div>
-                {profile && JSON.stringify(profile)}
-                {profile === undefined && <h1>Loading...</h1>}
-                <h1></h1>
+            <div className="mt-10 m-auto w-full">
+                <div className="m-auto w-[50%]">
+
+                    <h1 className="ml-28 text-4xl">Welcome <span> {profile && profile.name}</span></h1>
+                    <div className="w-[100%] h-52">
+                        <h2 className=" mt-10 text-3xl mx-auto w-[50%]">Biography</h2>
+                        <p className="w-[60%] h-12 break-words">{profile && profile.bio}</p>
+                    </div>
+
+                </div>
+                <div className="flex justify-between mt-52 ml-72 w-[40%]">
+                    <Link href="/profile/edit">
+                    <button
+                        className="rounded-3xl bg-black w-32 h-10 font-semibold hover:bg-stone-500 text-white">Edit
+                        Profile
+                    </button>
+                    </Link>
+                    <button onClick={() => signOut()}
+                            className="rounded-3xl bg-white w-32 h-10 font-semibold hover:bg-stone-800 hover:text-white ">Sign
+                        out
+                    </button>
+                </div>
             </div>
 
         </>
