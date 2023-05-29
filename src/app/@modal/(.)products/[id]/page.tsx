@@ -26,7 +26,7 @@ export default function ProductModal() {
 							/>
 						</div>
 						<div className="ml-10 mt-[5.8rem] h-[50px] w-[90%] ">
-							<h2 className="mb-10 w-[80%] text-3xl text-white">
+							<h2 className="mb-10 h-[80px] w-[80%] text-3xl text-white overflow-hidden text-clip">
 								{product.title}
 							</h2>
 							<p className="h-[120px] w-[80%] overflow-hidden text-clip  text-white">

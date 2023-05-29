@@ -2,14 +2,12 @@
 import React, {useRef, useState} from 'react'
 import {signIn, useSession} from 'next-auth/react'
 import {useRouter, useSearchParams} from 'next/navigation'
-import Alert from '../ui/Alert'
+import {toast} from "react-hot-toast";
 
 export default function LoginCard() {
     const router = useRouter()
-    const searchParams = useSearchParams()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -21,10 +19,10 @@ export default function LoginCard() {
                 callbackUrl: '/profile',
             })
             if (!res?.error) {
+                toast.success('Logged in successfully')
                 router.push('/profile')
             } else {
-                setError('Invalid email or password')
-
+                toast.error('Invalid email or password')
             }
         } catch (err: any) {
         }
@@ -35,6 +33,7 @@ export default function LoginCard() {
             <div className="m-auto mt-10 h-96 min-w-[300px] max-w-[30%] rounded-xl bg-white">
                 <div className="ml-10  pt-10">
                     <form className="flex flex-col" onSubmit={onSubmit}>
+                        <label htmlFor="email">Email</label>
                         <input
                             className="h-10 w-52 border border-black"
                             type="email"
@@ -42,16 +41,16 @@ export default function LoginCard() {
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
                         />
+                        <label className="mt-10" htmlFor="password">Password</label>
                         <input
-                            className="mt-10 h-10 w-52 border border-black"
+                            className=" h-10 w-52 border border-black"
                             type="password"
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        {error && <Alert>{error}</Alert>}
                         <button
-                            className="mr-10  h-14  w-48 rounded-xl bg-stone-800 text-xl font-semibold text-[#F5F5F5] hover:bg-gray-700">
+                            className="mt-10 mr-10  h-14  w-48 rounded-xl bg-stone-800 text-xl font-semibold text-[#F5F5F5] hover:bg-gray-700">
                             Login
                         </button>
                     </form>
