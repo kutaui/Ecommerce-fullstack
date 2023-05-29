@@ -43,7 +43,7 @@ export default function RegisterCard() {
 						<label htmlFor="email">Email</label>
 						<input
 							className="h-10 w-52 border border-black"
-							type="text"
+							type="email"
 							name="email"
 							id="email"
 						/>
