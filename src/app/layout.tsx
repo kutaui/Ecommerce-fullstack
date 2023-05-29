@@ -2,6 +2,7 @@ import Nav from '../components/Nav'
 import { StateContext } from '../context/StateContext'
 import { Toaster } from 'react-hot-toast'
 import Providers from '../context/Providers'
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
 	title: 'TheSociety',
@@ -28,6 +29,7 @@ export default function RootLayout(props: any) {
 						</StateContext>
 					</Providers>
 				</div>
+				<Analytics />
 			</body>
 		</html>
 	)
