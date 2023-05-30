@@ -50,7 +50,7 @@ export default function Profile() {
                 });
                 router.push('/profile/edit');
             }
-        }, 1000);
+        }, 2000);
 
         return () => {
             clearTimeout(redirectTimeout);
